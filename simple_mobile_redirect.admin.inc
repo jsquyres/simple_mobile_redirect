@@ -1,5 +1,4 @@
 <?php
-// $Id$
 function simple_mobile_redirect_admin_settings_form(&$form_state) {
   $form['simple_mobile_redirect_settings'] = array(
     '#type' => 'fieldset',
