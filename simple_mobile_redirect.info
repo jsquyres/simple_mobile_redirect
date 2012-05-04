@@ -1,3 +1,6 @@
 name = Simple Mobile Redirect
 description = Redirect to mobile site, optional cookie to not redirect
-core = 6.x
+core = 7.x
+package = Mobile
+
+files[] = simple_module_redirect.test
