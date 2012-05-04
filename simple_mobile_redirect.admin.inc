@@ -1,10 +1,14 @@
 <?php
+/**
+ * @file
+ * Callback for settings page
+ */
 function simple_mobile_redirect_admin_settings_form(&$form_state) {
   $form['simple_mobile_redirect_settings'] = array(
     '#type' => 'fieldset',
     '#title' => t('Simple Mobile Redirect Settings'),
-      '#description' => t('Link back to /?nomobi=true to set a cookie to stay on the full version of the site.<br>Link to /clearsimplemobileredirect to clear the cookie and redirect to Mobile sites.'),
-  );  
+      '#description' => t('Link back to /?nomobi=true to set a cookie to stay on the full version of the site.<br/>Link to /clearsimplemobileredirect to clear the cookie and redirect to Mobile sites.'),
+  );
   $form['simple_mobile_redirect_settings']['simple_mobile_redirect_home'] = array(
     '#type' => 'textfield',
     '#title' => t('non-mobile site'),

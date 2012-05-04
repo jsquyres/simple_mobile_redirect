@@ -8,7 +8,7 @@
  * Implementation of hook_install().
  */
 function simple_mobile_redirect_install() {
-  
+
 }
 
 /**
