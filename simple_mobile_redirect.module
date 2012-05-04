@@ -61,12 +61,17 @@ function _simple_mobile_redirect_setcookie($redirect = FALSE) {
 
 /**
  * Implements hook_boot().
+ *
+ * Running the checks in hook_boot() because we need to beat the cache.
  */
 function simple_mobile_redirect_boot() {
 
+  // if splashed already break out so we don't loop.
+  // check for nomobi to skip out as well
   if (isset($_COOKIE['splashed']) && $_COOKIE['splashed'] == 1) {
     return;
   }
+
   $iphone = variable_get('simple_mobile_redirect_iphone', '');
   $ipad = variable_get('simple_mobile_redirect_ipad', '');
   $android = variable_get('simple_mobile_redirect_android', '');
@@ -223,14 +228,11 @@ function simple_mobile_redirect_boot() {
 
   // if redirect (either the value of the mobile or desktop redirect depending on the value of $is_mobile_browser) is TRUE redirect else we return the status of $is_mobile_browser
   if ($redirect = ($is_mobile_browser) ? $simplemobileredirect : '') {
-    // redirect to the right url for this device
-    $url = $redirect;
-    //$url = url($redirect);
-    drupal_set_message("redirecting: " . $redirect);
-    //drupal_goto($redirect);
+    // set a cookie so we don't loop.
     setcookie('splashed', 1);
-    header('Location: ' . $url, TRUE, 302);
+
+    // redirect to the right url for this device
+    header('Location: ' . $redirect, TRUE, 302);
     exit;
   }
-// ends function simple_mobile_redirect_boot
 }
