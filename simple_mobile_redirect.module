@@ -80,8 +80,6 @@ function simple_mobile_redirect_boot() {
   $simplemobileredirect = '';
   // get the user agent
   $user_agent         = $_SERVER['HTTP_USER_AGENT'];
-  // get the content accept
-  $httpaccept         = $_SERVER['HTTP_ACCEPT'];
 
   drupal_set_message("agent: " . $user_agent);
   // using a switch to check for the user agent, smoother than a searies of if's
@@ -127,7 +125,7 @@ function simple_mobile_redirect_boot() {
     break;
 
     // is the device showing signs of support for text/vnd.wap.wml or application/vnd.wap.xhtml+xml
-    case ((strpos($httpaccept, 'text/vnd.wap.wml') > 0) || (strpos($httpaccept, 'application/vnd.wap.xhtml+xml') > 0)):
+    case ((strpos($_SERVER['HTTP_ACCEPT'], 'text/vnd.wap.wml') > 0) || (strpos($_SERVER['HTTP_ACCEPT'], 'application/vnd.wap.xhtml+xml') > 0)):
       $simplemobileredirect = variable_get('simple_mobile_redirect_mobileredirect', '');
     break;
 
