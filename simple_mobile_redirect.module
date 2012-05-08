@@ -82,7 +82,6 @@ function simple_mobile_redirect_boot() {
   // get the user agent
   $user_agent         = $_SERVER['HTTP_USER_AGENT'];
 
-  drupal_set_message("agent: " . $user_agent);
   // using a switch to check for the user agent, smoother than a searies of if's
   switch (TRUE) {
     // find the word ipad in the user agent
