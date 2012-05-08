@@ -65,7 +65,7 @@ function _simple_mobile_redirect_setcookie($redirect = FALSE) {
  * Running the checks in hook_boot() because we need to beat the cache.
  */
 function simple_mobile_redirect_boot() {
-
+  global $base_url;
   // if we've already redirected break out so we don't loop.
   // check for nomobi to skip out as well
   if ((isset($_COOKIE['smr_redirect']) && $_COOKIE['smr_redirect'] == 1) ||
@@ -144,8 +144,9 @@ function simple_mobile_redirect_boot() {
     // set a cookie so we don't loop.
     setcookie('smr_redirect', 1);
 
+    $simplemobileredirect = ltrim($simplemobileredirect, '/');
     // redirect to the right url for this device
-    header('Location: ' . $simplemobileredirect, TRUE, 302);
+    header('Location: ' . $base_url . '/' . $simplemobileredirect, TRUE, 302);
     exit;
   }
 }
