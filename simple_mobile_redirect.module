@@ -141,8 +141,13 @@ function simple_mobile_redirect_boot() {
     setcookie('smr_redirect', 1);
 
     $simplemobileredirect = ltrim($simplemobileredirect, '/');
+
+    // check to see if the redirect is an external redirect
+    if (strpos($simplemobileredirect, '://') === FALSE) {
+      $simplemobileredirect = $base_url . '/' . $simplemobileredirect;
+    }
     // redirect to the right url for this device
-    header('Location: ' . $base_url . '/' . $simplemobileredirect, TRUE, 302);
+    header('Location: ' . $simplemobileredirect, TRUE, 302);
     exit;
   }
   else {
