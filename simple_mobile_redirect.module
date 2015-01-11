@@ -69,6 +69,16 @@ function _simple_mobile_redirect_setcookie($redirect = FALSE) {
  */
 function simple_mobile_redirect_boot() {
   global $base_url;
+
+  // JMS Don't redirect on deep links
+  $r = request_uri();
+  if ($r <> "/" && $r <> "/node") {
+    _simple_mobile_redirect_setcookie(FALSE);
+    // setcookie() does not set $_COOKIE, so just return
+    // here so that we don't process further.
+    return;
+  }
+
   // if we've already redirected break out so we don't loop.
   // check for nomobi to skip out as well
   if ((isset($_COOKIE['smr_redirect']) && $_COOKIE['smr_redirect'] == 1) ||
